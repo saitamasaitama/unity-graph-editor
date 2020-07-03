@@ -29,7 +29,8 @@ public class GraphGeneratorEditor : Editor
   {
     Debug.Log("SceneView Loading");
     SceneView.duringSceneGui += scene =>
-    {/*
+    {
+
       Handles.BeginGUI();
       var ButtonWidth = 300.0f;
       if (GUILayout.Button("ボタンラベル", GUILayout.Width(ButtonWidth)))
@@ -38,7 +39,7 @@ public class GraphGeneratorEditor : Editor
         EditorUtility.DisplayDialog("ボタン押した？", "今ボタン押したよね？", "押した");
       }
       Handles.EndGUI();
-      */
+      
     };
   }
 

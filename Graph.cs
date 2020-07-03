@@ -29,10 +29,6 @@ public class Graph : List<Graph>
 
   //そのグラフと結合しているIDのリスト（ユニーク)  
 
-  
-
-
-
   public DataComponent GetComponent<T>()
     where T : DataComponent
   {

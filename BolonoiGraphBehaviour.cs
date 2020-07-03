@@ -2,15 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GraphBehaviour : MonoBehaviour
+public class BolonoiGraphBehaviour : MonoBehaviour
 {
 
-
-  public Graph graph=new Graph();
   public List<Graph> all = new List<Graph>();
-
   public float NodeSize = 0.1f;
-
 
 
   private void OnDrawGizmos()
@@ -36,14 +32,32 @@ public class GraphBehaviour : MonoBehaviour
 
     int colorIndex = 0;
 
-    //点を連舵輪んぐ
-    foreach(Graph g in all)
+    //クラスタを分割していく
+    while (0 < data.Count)
     {
       colorIndex++;
-      Gizmos.color = NodeColors[colorIndex % 4];
-      Gizmos.DrawSphere(V2V(g.Position), NodeSize);
+      List<Graph> cluster=data[0].FindAllGraph();
 
+      //クラスタごとに
+      cluster[0].eachAll(
+      g =>
+      {
+        //Graphを描画
+        Gizmos.color = NodeColors[colorIndex % 4];
+        Gizmos.DrawSphere(V2V(g.Position), NodeSize);
+      },
 
+      (from, to) =>
+      {
+        //根元から点まで直線を引く
+        Gizmos.color = LineColors[colorIndex%4];
+        Gizmos.DrawLine(V2V(from.Position), V2V(to.Position));
+      });
+
+      foreach (Graph c in cluster)
+      {
+        data.Remove(c);
+      }
 
     }
     

@@ -16,8 +16,7 @@ public class GraphGenerator : MonoBehaviour
 
   public void GenerateRandomGraph()
   {
-    var result = new GameObject("GeneratedGraph");
-
+    var result = new GameObject($"GeneratedGraph-{count}-{nearJoint}");
     var graph = result.AddComponent<GraphBehaviour>();
 
     graph.graph = PositionGraph.From(Vector3.Zero);
@@ -33,8 +32,7 @@ public class GraphGenerator : MonoBehaviour
       
     }
 
-    //Debug.Log($"ZERO= {zero.id} ");
-
+   
     //ループしつつ最近点２個のみの接続とする
     for(int i = count-1; 0 <= i; i--)
     {
